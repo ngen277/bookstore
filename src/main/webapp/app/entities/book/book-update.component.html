@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-book-heading">Create or edit a Book</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                           formControlName="price"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_author">Author</label>
+                    <select class="form-control" id="field_author" name="author" formControlName="author">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="authorOption.id === editForm.get('author').value?.id ? editForm.get('author').value : authorOption" *ngFor="let authorOption of authors; trackBy: trackAuthorById">{{authorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cover">Cover</label>
+                    <select class="form-control" id="field_cover" name="cover" formControlName="cover">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="coverOption.id === editForm.get('cover').value?.id ? editForm.get('cover').value : coverOption" *ngFor="let coverOption of covers; trackBy: trackCoverById">{{coverOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_discount">Discount</label>
+                    <select class="form-control" id="field_discount" name="discount" formControlName="discount">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="discountOption.id === editForm.get('discount').value?.id ? editForm.get('discount').value : discountOption" *ngFor="let discountOption of discounts; trackBy: trackDiscountById">{{discountOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ebook">Ebook</label>
+                    <select class="form-control" id="field_ebook" name="ebook" formControlName="ebook">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="eBookOption.id === editForm.get('ebook').value?.id ? editForm.get('ebook').value : eBookOption" *ngFor="let eBookOption of ebooks; trackBy: trackEBookById">{{eBookOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_publisher">Publisher</label>
+                    <select class="form-control" id="field_publisher" name="publisher" formControlName="publisher">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="publisherOption.id === editForm.get('publisher').value?.id ? editForm.get('publisher').value : publisherOption" *ngFor="let publisherOption of publishers; trackBy: trackPublisherById">{{publisherOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rating">Rating</label>
+                    <select class="form-control" id="field_rating" name="rating" formControlName="rating">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ratingOption.id === editForm.get('rating').value?.id ? editForm.get('rating').value : ratingOption" *ngFor="let ratingOption of ratings; trackBy: trackRatingById">{{ratingOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_categories">Categories</label>
+                    <select class="form-control" id="field_categories" multiple name="categories" formControlName="categories">
+                        <option [ngValue]="getSelected(editForm.get('categories').value, categoryOption)" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_languages">Language</label>
+                    <select class="form-control" id="field_languages" multiple name="languages" formControlName="languages">
+                        <option [ngValue]="getSelected(editForm.get('languages').value, languageOption)" *ngFor="let languageOption of languages; trackBy: trackLanguageById">{{languageOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_gifts">Gift</label>
+                    <select class="form-control" id="field_gifts" multiple name="gifts" formControlName="gifts">
+                        <option [ngValue]="getSelected(editForm.get('gifts').value, giftOption)" *ngFor="let giftOption of gifts; trackBy: trackGiftById">{{giftOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

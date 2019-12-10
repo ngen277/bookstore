@@ -1,0 +1,74 @@
+entity Author{
+	name String,
+    popularity Integer
+}
+
+entity Book {
+	name String,
+	description String,
+	price Double
+}
+
+entity Category {
+	category String
+}
+
+entity Cover {
+	cover String
+}
+
+entity Discount {
+	discount Double,
+    description String
+}
+
+entity EBook {
+	format String
+}
+
+entity Gift {
+	gift String
+}
+
+entity Language {
+	language String
+}
+
+entity News {
+	title String,
+    text String
+}
+
+entity Publisher {
+	name String
+}
+
+entity Rating {
+	rating Integer
+}
+
+entity Sale {
+	amount Long
+}
+
+relationship OneToOne {
+	Book{author} to Author,
+    Book{cover} to Cover,
+    Book{discount} to Discount,
+    Book{ebook} to EBook,
+    Book{publisher} to Publisher,
+    Book{rating} to Rating
+}
+
+relationship OneToMany {
+	Book{sales} to Sale,
+    Book{news} to News
+}
+
+relationship ManyToMany {
+	Book{categories} to Category{book},
+    Book{language} to Language{book},
+    Book{gift} to Gift{book}
+}
+
+

@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="book">
+            <h2><span>Book</span> {{book.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{book.name}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{book.description}}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{book.price}}</span>
+                </dd>
+                <dt><span>Author</span></dt>
+                <dd>
+                    <div *ngIf="book.author">
+                        <a [routerLink]="['/author', book.author?.id, 'view']">{{book.author?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Cover</span></dt>
+                <dd>
+                    <div *ngIf="book.cover">
+                        <a [routerLink]="['/cover', book.cover?.id, 'view']">{{book.cover?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Discount</span></dt>
+                <dd>
+                    <div *ngIf="book.discount">
+                        <a [routerLink]="['/discount', book.discount?.id, 'view']">{{book.discount?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Ebook</span></dt>
+                <dd>
+                    <div *ngIf="book.ebook">
+                        <a [routerLink]="['/e-book', book.ebook?.id, 'view']">{{book.ebook?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Publisher</span></dt>
+                <dd>
+                    <div *ngIf="book.publisher">
+                        <a [routerLink]="['/publisher', book.publisher?.id, 'view']">{{book.publisher?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Rating</span></dt>
+                <dd>
+                    <div *ngIf="book.rating">
+                        <a [routerLink]="['/rating', book.rating?.id, 'view']">{{book.rating?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Categories</span></dt>
+                <dd>
+                    <span *ngFor="let categories of book.categories; let last = last">
+                        <a [routerLink]="['/category', categories?.id, 'view' ]">{{categories.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Language</span></dt>
+                <dd>
+                    <span *ngFor="let language of book.languages; let last = last">
+                        <a [routerLink]="['/language', language?.id, 'view' ]">{{language.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Gift</span></dt>
+                <dd>
+                    <span *ngFor="let gift of book.gifts; let last = last">
+                        <a [routerLink]="['/gift', gift?.id, 'view' ]">{{gift.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/book', book.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

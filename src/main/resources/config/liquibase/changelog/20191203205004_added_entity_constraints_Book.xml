@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Book.
+    -->
+    <changeSet id="20191203205004-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="author_id"
+                                 baseTableName="book"
+                                 constraintName="fk_book_author_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="author"/>
+
+        <addForeignKeyConstraint baseColumnNames="cover_id"
+                                 baseTableName="book"
+                                 constraintName="fk_book_cover_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cover"/>
+
+        <addForeignKeyConstraint baseColumnNames="discount_id"
+                                 baseTableName="book"
+                                 constraintName="fk_book_discount_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="discount"/>
+
+        <addForeignKeyConstraint baseColumnNames="ebook_id"
+                                 baseTableName="book"
+                                 constraintName="fk_book_ebook_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="e_book"/>
+
+        <addForeignKeyConstraint baseColumnNames="publisher_id"
+                                 baseTableName="book"
+                                 constraintName="fk_book_publisher_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="publisher"/>
+
+        <addForeignKeyConstraint baseColumnNames="rating_id"
+                                 baseTableName="book"
+                                 constraintName="fk_book_rating_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rating"/>
+
+        <addForeignKeyConstraint baseColumnNames="book_id"
+                                 baseTableName="book_categories"
+                                 constraintName="fk_book_categories_book_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="book"/>
+
+        <addForeignKeyConstraint baseColumnNames="categories_id"
+                                 baseTableName="book_categories"
+                                 constraintName="fk_book_categories_categories_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+        
+        <addForeignKeyConstraint baseColumnNames="book_id"
+                                 baseTableName="book_language"
+                                 constraintName="fk_book_language_book_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="book"/>
+
+        <addForeignKeyConstraint baseColumnNames="language_id"
+                                 baseTableName="book_language"
+                                 constraintName="fk_book_language_language_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="language"/>
+        
+        <addForeignKeyConstraint baseColumnNames="book_id"
+                                 baseTableName="book_gift"
+                                 constraintName="fk_book_gift_book_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="book"/>
+
+        <addForeignKeyConstraint baseColumnNames="gift_id"
+                                 baseTableName="book_gift"
+                                 constraintName="fk_book_gift_gift_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="gift"/>
+        
+    </changeSet>
+</databaseChangeLog>
